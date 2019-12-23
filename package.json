@@ -1,0 +1,39 @@
+{
+  "name": "currency-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "queue": "nodemon src/queue.js",
+    "build": "sucrase ./src -d ./dist --transforms imports"
+  },
+  "dependencies": {
+    "@sentry/node": "^5.10.2",
+    "bee-queue": "^1.2.2",
+    "cors": "^2.8.5",
+    "date-fns": "^2.0.0-beta.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-rate-limit": "^5.0.0",
+    "helmet": "^3.21.2",
+    "ioredis": "^4.14.1",
+    "mongoose": "^5.8.3",
+    "pg": "^7.15.1",
+    "pg-hstore": "^2.3.3",
+    "rate-limit-redis": "^1.7.0",
+    "redis": "^2.8.0",
+    "youch": "^2.0.10"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "sucrase": "^3.11.0"
+  }
+}
