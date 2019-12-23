@@ -2,18 +2,33 @@ import mongoose from 'mongoose';
 
 const CurrencySchema = new mongoose.Schema(
   {
-    content: {
-      type: String,
+    quotationDate: {
+      type: Date,
       required: true,
     },
-    user: {
+    codCurrency: {
       type: Number,
       required: true,
     },
-    read: {
-      type: Boolean,
+    currency: {
+      type: String,
       required: true,
-      default: false,
+    },
+    purchase: {
+      type: Number,
+      required: true,
+    },
+    sale: {
+      type: Number,
+      required: true,
+    },
+    prtPurchase: {
+      type: Number,
+      required: true,
+    },
+    prtSale: {
+      type: Number,
+      required: true,
     },
   },
   {
