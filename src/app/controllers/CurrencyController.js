@@ -13,7 +13,6 @@ class CurrencyController {
     /**
      * Check reported currency
      */
-
     if (currency) {
       const checkCurrency = await Currency.findOne({ currency });
 
