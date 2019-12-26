@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const CurrencySchema = new mongoose.Schema(
   {
     quotationDate: {
-      type: Date,
+      type: String,
       required: true,
     },
     codCurrency: {
@@ -15,19 +15,19 @@ const CurrencySchema = new mongoose.Schema(
       required: true,
     },
     purchase: {
-      type: Number,
+      type: String,
       required: true,
     },
     sale: {
-      type: Number,
+      type: String,
       required: true,
     },
     prtPurchase: {
-      type: Number,
+      type: String,
       required: true,
     },
     prtSale: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
