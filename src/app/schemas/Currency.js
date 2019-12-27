@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const CurrencySchema = new mongoose.Schema(
   {
     quotationDate: {
-      type: String,
+      type: Date,
       required: true,
     },
     codCurrency: {

@@ -1,3 +1,4 @@
+import { parseISO } from 'date-fns';
 import csv from 'csvtojson';
 import request from 'request';
 
@@ -31,14 +32,26 @@ class SaveQuotationService {
         );
       })
       .then(async jsonObj => {
+        const [dd, MM, yyyy] = jsonObj[0].quotationDate.split('/');
+        const dateFormatted = parseISO(`${yyyy}-${MM}-${dd}`);
         // Check the database to see if data with the same saved date already exists.
         const currency = await Currency.find({
-          quotationDate: jsonObj[0].quotationDate,
+          quotationDate: dateFormatted,
         });
 
         // Will be saved if no data found
         if (currency.length === 0) {
-          await Currency.create(jsonObj);
+          jsonObj.forEach(async doc => {
+            await Currency.create({
+              quotationDate: dateFormatted,
+              codCurrency: doc.codCurrency,
+              currency: doc.currency,
+              purchase: doc.purchase,
+              sale: doc.sale,
+              prtPurchase: doc.prtPurchase,
+              prtSale: doc.prtSale,
+            });
+          });
         }
       });
 
