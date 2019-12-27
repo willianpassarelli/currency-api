@@ -1,15 +1,26 @@
-import { format } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import { format, parseISO } from 'date-fns';
 
 import Currency from '../schemas/Currency';
 
 class CurrencyController {
   async index(req, res) {
     const { currency } = req.params;
-    const { date } = req.query;
+    const { date, startDate, endDate } = req.query;
 
     // TAREFA: trazer a ultima cotação
-    const quotationDate = format(new Date(), 'dd/MM/yyyy', { locale: pt });
+    const quotationDate = parseISO(format(new Date(), 'yyyy-MM-dd'));
+
+    /**
+     * Find for quotation according to the period between two dates and the selected currency
+     */
+    if (currency && startDate && endDate) {
+      const betweenDates = await Currency.find({
+        currency,
+        quotationDate: { $gte: parseISO(startDate), $lte: parseISO(endDate) },
+      });
+
+      return res.json(betweenDates);
+    }
 
     /**
      * Check reported currency
@@ -39,7 +50,7 @@ class CurrencyController {
     if (currency && date) {
       const currencyDate = await Currency.findOne({
         currency,
-        quotationDate: date,
+        quotationDate: parseISO(date),
       });
 
       if (!currencyDate) {
@@ -56,7 +67,9 @@ class CurrencyController {
      * Find all currencies with quotation of date specific
      */
     if (date) {
-      const currenciesDate = await Currency.find({ quotationDate: date });
+      const currenciesDate = await Currency.find({
+        quotationDate: parseISO(date),
+      });
 
       if (currenciesDate.length === 0) {
         return res.status(401).json({

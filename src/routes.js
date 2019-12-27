@@ -11,7 +11,7 @@ import SaveQuotationService from './app/services/SaveQuotationService';
 const routes = new Router();
 
 cron.schedule(
-  '* 14 * * *',
+  '* 13 * * *',
   async () => {
     const date = format(new Date(), 'yyyyMMdd', { locale: pt });
     await SaveQuotationService.run({ date });
