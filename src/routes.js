@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import { format } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import cron from 'node-cron';
 
 import QuotationController from './app/controllers/QuotationController';
@@ -9,10 +11,10 @@ import SaveQuotationService from './app/services/SaveQuotationService';
 const routes = new Router();
 
 cron.schedule(
-  '* 19 * * *',
+  '* 14 * * *',
   async () => {
-    await SaveQuotationService.run();
-    console.log('Rodou');
+    const date = format(new Date(), 'yyyyMMdd', { locale: pt });
+    await SaveQuotationService.run({ date });
   },
   {
     scheduled: true,

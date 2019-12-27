@@ -8,6 +8,7 @@ class CurrencyController {
     const { currency } = req.params;
     const { date } = req.query;
 
+    // TAREFA: trazer a ultima cotação
     const quotationDate = format(new Date(), 'dd/MM/yyyy', { locale: pt });
 
     /**

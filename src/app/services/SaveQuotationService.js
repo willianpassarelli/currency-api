@@ -1,18 +1,14 @@
-import { format } from 'date-fns';
-import pt from 'date-fns/locale/pt';
-
 import csv from 'csvtojson';
 import request from 'request';
 
 import Currency from '../schemas/Currency';
 
 class SaveQuotationService {
-  async run() {
-    const date = format(new Date(), 'yyyyMMdd', { locale: pt });
+  async run({ date }) {
     /**
      * Download csv from bcb website and save to MongoDB
      */
-    csv({
+    const res = csv({
       noheader: true,
       delimiter: ';',
       headers: [
@@ -44,9 +40,9 @@ class SaveQuotationService {
         if (currency.length === 0) {
           await Currency.create(jsonObj);
         }
-
-        return jsonObj;
       });
+
+    return res;
   }
 }
 
