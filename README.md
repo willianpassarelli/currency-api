@@ -2,15 +2,15 @@
 
 API para consulta para cotações de mais 150 moedas diretamente do site do bcb (Banco central do Brasil).
 
-## (GET) Retorna moeda atráves da sigla
 
+## (GET) Retorna moeda selecionada
 ```
 http://localhost:3333/currency/USD
 ```
 
 Retorna a ultima cotação da moeda selecionada.
 
-## (GET) Retorna moeda atráves da sigla com a data da cotação
+## (GET) Retorna moeda com a data da cotação
 
 ```
 http://localhost:3333/currency/USD?date=2019-12-26
