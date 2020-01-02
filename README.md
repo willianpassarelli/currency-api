@@ -1,4 +1,4 @@
-# API de Moedas
+# 💰 API de Moedas
 
 API para consulta para cotações de mais 150 moedas diretamente do site do bcb (Banco central do Brasil).
 
@@ -48,7 +48,7 @@ http://localhost:3333/currency/USD?startDate=2019-12-20&endDate=2019-12-27
 |prtPurchase | Paridade Compra
 |prtSale | Paridade Venda
 
-## Moedas
+##  Moedas
 
 | 1 | 2 | 3 | 4 |
 |---|---|---|---|
