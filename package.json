@@ -9,6 +9,9 @@
     "queue": "nodemon src/queue.js",
     "build": "sucrase ./src -d ./build --transforms javascript,imports"
   },
+  "engines": {
+    "node": "12.13.0"
+  },
   "dependencies": {
     "@sentry/node": "^5.10.2",
     "cors": "^2.8.5",
