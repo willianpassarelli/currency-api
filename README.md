@@ -5,7 +5,7 @@ API para consulta para cotações de mais 150 moedas diretamente do site do bcb 
 
 ## (GET) Retorna moeda selecionada
 ```
-http://localhost:3333/currency/USD
+https://currencydevpass.herokuapp.com/currency/USD
 ```
 
 Retorna a ultima cotação da moeda selecionada.
@@ -13,27 +13,27 @@ Retorna a ultima cotação da moeda selecionada.
 ## (GET) Retorna moeda com a data da cotação
 
 ```
-http://localhost:3333/currency/USD?date=2019-12-26
+https://currencydevpass.herokuapp.com/currency/USD?date=2019-12-26
 ```
 Formato da data (yyyy-MM-dd)
 
 ## (GET) Retorna todas as moedas com a última cotação registrada
 
 ```
-http://localhost:3333/currency/all
+https://currencydevpass.herokuapp.com/currency/all
 ```
 
 ## (GET) Retorna todas as moedas com a data da cotação selecionada
 
 ```
-http://localhost:3333/currency/all?date=2019-12-26
+https://currencydevpass.herokuapp.com/currency/all?date=2019-12-26
 ```
 Formato da data (yyyy-MM-dd)
 
 ## (GET) Retorna a cotação de um período específico da moeda selecionada
 
 ```
-http://localhost:3333/currency/USD?startDate=2019-12-20&endDate=2019-12-27
+https://currencydevpass.herokuapp.com/currency/USD?startDate=2019-12-20&endDate=2019-12-27
 ```
 
 ## Legendas

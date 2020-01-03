@@ -52,6 +52,10 @@ class SaveQuotationService {
               prtSale: doc.prtSale,
             });
           });
+        } else {
+          throw new Error(
+            'Quotations with this date already exist in database'
+          );
         }
       });
 
