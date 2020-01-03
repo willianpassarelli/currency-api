@@ -1,4 +1,4 @@
-import { format, parseISO } from 'date-fns';
+import { parseISO } from 'date-fns';
 
 import Currency from '../schemas/Currency';
 
@@ -6,9 +6,6 @@ class CurrencyController {
   async index(req, res) {
     const { currency } = req.params;
     const { date, startDate, endDate } = req.query;
-
-    // TAREFA: trazer a ultima cotação
-    const quotationDate = parseISO(format(new Date(), 'yyyy-MM-dd'));
 
     /**
      * Find for quotation according to the period between two dates and the selected currency
@@ -39,7 +36,9 @@ class CurrencyController {
      * Find currency specific with quotation date of today
      */
     if (currency && !date) {
-      const currencyToday = await Currency.findOne({ currency, quotationDate });
+      const currencyToday = await Currency.findOne({ currency }).sort({
+        quotationDate: -1,
+      });
 
       return res.json(currencyToday);
     }
@@ -84,7 +83,9 @@ class CurrencyController {
     /**
      * Find all currencies with quotation of today
      */
-    const currencies = await Currency.find({ quotationDate });
+    const currencies = await Currency.find()
+      .sort({ quotationDate: -1 })
+      .limit(156);
 
     return res.json(currencies);
   }
