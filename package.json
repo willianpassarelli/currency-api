@@ -7,7 +7,7 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "queue": "nodemon src/queue.js",
-    "build": "sucrase ./src -d ./dist --transforms imports"
+    "build": "sucrase ./src -d /build --transforms javascript,imports"
   },
   "dependencies": {
     "@sentry/node": "^5.10.2",

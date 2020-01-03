@@ -1,1 +1,1 @@
-web:nodemon src/server.js
+web: yarn start
