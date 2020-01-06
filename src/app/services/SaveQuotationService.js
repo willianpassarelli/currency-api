@@ -36,7 +36,7 @@ class SaveQuotationService {
       .then(async jsonObj => {
         const [dd, MM, yyyy] = jsonObj[0].quotationDate.split('/');
         const dateFormatted = parseISO(`${yyyy}-${MM}-${dd}`);
-        // Check the database to see if data with the same saved date already exists.
+        // Check the database to see if data with the same saved date already exists
         const currency = await Currency.find({
           quotationDate: dateFormatted,
         });
@@ -55,6 +55,7 @@ class SaveQuotationService {
             });
           });
 
+          // Invalidate searches from quotation today and all currencies
           await Cache.invalidate('currencyToday');
           await Cache.invalidate('currencies');
         } else {
