@@ -4,6 +4,8 @@ import request from 'request';
 
 import Currency from '../schemas/Currency';
 
+import Cache from '../../lib/Cache';
+
 class SaveQuotationService {
   async run({ date }) {
     /**
@@ -52,6 +54,9 @@ class SaveQuotationService {
               prtSale: doc.prtSale,
             });
           });
+
+          await Cache.invalidate('currencyToday');
+          await Cache.invalidate('currencies');
         } else {
           throw new Error(
             'Quotations with this date already exist in database'

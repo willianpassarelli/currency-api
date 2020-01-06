@@ -2,6 +2,8 @@ import { parseISO } from 'date-fns';
 
 import Currency from '../schemas/Currency';
 
+import Cache from '../../lib/Cache';
+
 class CurrencyController {
   async index(req, res) {
     const { currency } = req.params;
@@ -39,6 +41,14 @@ class CurrencyController {
       const currencyToday = await Currency.findOne({ currency }).sort({
         quotationDate: -1,
       });
+
+      const cached = await Cache.get('currencyToday');
+
+      if (cached) {
+        return res.json(cached);
+      }
+
+      await Cache.set('currencyToday', currencyToday);
 
       return res.json(currencyToday);
     }
@@ -83,9 +93,18 @@ class CurrencyController {
     /**
      * Find all currencies with quotation of today
      */
+
+    const cached = await Cache.get('currencies');
+
+    if (cached) {
+      return res.json(cached);
+    }
+
     const currencies = await Currency.find()
       .sort({ quotationDate: -1 })
       .limit(156);
+
+    await Cache.set('currencies', currencies);
 
     return res.json(currencies);
   }
