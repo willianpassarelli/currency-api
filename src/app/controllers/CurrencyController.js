@@ -93,7 +93,6 @@ class CurrencyController {
     /**
      * Find all currencies with quotation of today
      */
-
     const cached = await Cache.get('currencies');
 
     if (cached) {

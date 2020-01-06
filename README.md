@@ -1,4 +1,4 @@
-# 💰 API de Moedas
+# API de Moedas
 
 API para consulta para cotações de mais 150 moedas diretamente do site do bcb (Banco central do Brasil).
 
