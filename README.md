@@ -1,6 +1,6 @@
 # API de Moedas
 
-API para consulta para cotações de mais 150 moedas diretamente do site do bcb (Banco central do Brasil).
+API para consulta de cotações de mais 150 moedas convertidas para o Real, diretamente do site do bcb (Banco central do Brasil).
 
 
 ## (GET) Retorna moeda selecionada
@@ -13,9 +13,9 @@ Retorna a ultima cotação da moeda selecionada.
 ## (GET) Retorna moeda com a data da cotação
 
 ```
-https://currencydevpass.herokuapp.com/currency/USD?date=2019-12-26
+https://currencydevpass.herokuapp.com/currency/USD?date=2020-01-06
 ```
-Formato da data (yyyy-MM-dd)
+Formato da data: yyyy-MM-dd
 
 ## (GET) Retorna todas as moedas com a última cotação registrada
 
@@ -26,15 +26,27 @@ https://currencydevpass.herokuapp.com/currency/all
 ## (GET) Retorna todas as moedas com a data da cotação selecionada
 
 ```
-https://currencydevpass.herokuapp.com/currency/all?date=2019-12-26
+https://currencydevpass.herokuapp.com/currency/all?date=2020-01-06
 ```
-Formato da data (yyyy-MM-dd)
+Formato da data: yyyy-MM-dd
 
 ## (GET) Retorna a cotação de um período específico da moeda selecionada
 
 ```
-https://currencydevpass.herokuapp.com/currency/USD?startDate=2019-12-20&endDate=2019-12-27
+https://currencydevpass.herokuapp.com/currency/USD?startDate=2019-12-20&endDate=2020-01-06
 ```
+Formato da data: yyyy-MM-dd
+
+## (POST) Grava no banco de dados a cotação de uma data específica
+
+Ex.:
+```
+https://currencydevpass.herokuapp.com/quotation/20191223
+```
+
+Se a data já estiver no banco de dados ou no site do bcb não possuir nenhuma informação o mesmo retornará uma mensagem de erro.
+
+Obs.: A API possui um schedule que roda todos os dias as 13:00 (Time zone de São Paulo) com atualização da cotação do dia, o schedule está programado com este horário pois o bcb atualiza a partir das 13:00hrs.
 
 ## Legendas
 
@@ -91,3 +103,5 @@ https://currencydevpass.herokuapp.com/currency/USD?startDate=2019-12-20&endDate=
 |NAD|GEL|GTQ|PLN|
 |BBD|HNL|MMK|EUR|
 |BZD|SLL|PGK|XAU|
+
+##
